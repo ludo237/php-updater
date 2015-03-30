@@ -15,14 +15,15 @@ directory=/tmp/php-updater
 is_active(){
     exists=`php -m | grep $1`;
     if [ -z "$exists" ]; then
-        echo "$exists not installed";
+        echo "Error while installing $exists, try the manual approach instead";
     else
         echo "$exists installed!!";
     fi;
 }
 # Install a PHP extension
 install_extension(){
-    cd ext/$1
+    echo "--------- Installing $1";
+    cd $directory/$current_version/ext/$1
     phpize > /dev/null
     ./configure -q > /dev/null
     make &> $mout
@@ -87,16 +88,10 @@ echo "--------- Current php ini configurations";
 php --ini
 echo "---------";
 echo "--------- Installing common and useful extensionsi. Provide password when prompted";
-echo "--------- Installing mcrypt";
 install_extension mcrypt;
-echo "---------";
-echo "--------- Checking if mycrypt is installed";
 is_active mcrypt;
 echo "---------";
-echo "--------- Installing gd";
 install_extension gd;
-echo "---------";
-echo "--------- Checking if GD is installed";
 is_active gd;
 echo "-----------------------------------------------------------------";
 echo "---------                                                 -------";
