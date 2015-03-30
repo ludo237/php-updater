@@ -48,7 +48,7 @@ echo "-----------------------------------------------------------------";
 echo "---------";
 echo "--------- Checking dependencies";
 echo "--------- Please provide root password when prompted";
-sudo apt-get -qq update && sudo apt-get install -y autoconf curl git libcurl4-gnutls-dev libmcrypt libxml2 libxml2-dev make wget
+sudo apt-get -qq update && sudo apt-get install -y autoconf curl git libcurl4-gnutls-dev libmcrypt-dev libxml2 libxml2-dev make mcrypt wget
 echo "---------";
 echo "--------- Creating a folder inside /tmp in order to keep your directory clean";
 if [ -d $directory  ]; then
