@@ -12,8 +12,27 @@ echo "--------- create an issue on the repository on Github.com -------";
 echo "---------                                                 -------";
 echo "-----------------------------------------------------------------";
 
+# Defining useful function
+is_active(){
+  exists=`php -m | grep $1`;
+  if [ -z "$exists" ]; then
+      echo "$exists not installed";
+  else
+      echo "$exists installed!!";
+  fi
+}
+
+install_extension(){
+    cd $1
+    phpize > /dev/null
+    ./configure -q > /dev/null
+    make &> $mout
+    sudo make install &> $miout
+}
+
+# Defining useful variables
 mout=make_output.txt
-miout=make_install_output.txt
+mi_aut=make_install_output.txt
 directory=/tmp/php-updater
 echo "---------";
 echo "--------- Checking dependencies";
@@ -62,35 +81,16 @@ php --ini
 echo "---------";
 echo "--------- Installing common and useful extensionsi. Provide password when prompted";
 echo "--------- Installing mcrypt";
-cd /ext/mcrypt
-phpize > /dev/null
-aclocal
-./configure -q > /dev/null
-make &> $mout
-sudo make install &> $miout
+install_extension mcrypt;
 echo "---------";
 echo "--------- Checking if mycrypt is installed";
-exists=`php -m | grep mcrypt`;
-if [ -z "$exists" ]; then
-    echo "$exists not installed";
-else
-    echo "$exists installed!!";
-fi
+is_active mcrypt;
 echo "---------";
 echo "--------- Installing gd";
-cd /ext/gd
-phpize > /dev/null
-aclocal
-make &> $mout
-sudo make install &> $miout
+install_extension gd;
 echo "---------";
 echo "--------- Checking if GD is installed";
-exists=`php -m | grep mcrypt`;
-if [ -z "$exists" ]; then
-    echo "$exists not installed";
-else
-    echo "$eists installed!!";
-fi
+is_active gd;
 echo "-----------------------------------------------------------------";
 echo "---------                                                 -------";
 echo "---------                 Update complete                 -------";
