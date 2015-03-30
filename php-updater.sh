@@ -39,7 +39,7 @@ echo "---------           Welcome to PHP Updater v0.0.1         -------";
 echo "---------                                                 -------";
 echo "--------- Interactive script to update PHP                -------";
 echo "--------- please note, this update will install           -------";
-echo "--------- $current_Version with default configurations    -------";
+echo "--------- $current_version with default configurations    -------";
 echo "--------- If you need something more specific please      -------";
 echo "--------- create an issue on the repository on Github.com -------";
 echo "---------                                                 -------";
