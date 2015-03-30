@@ -28,6 +28,7 @@ install_extension(){
     ./configure -q > /dev/null
     make &> $mout
     sudo make install &> $miout
+    is_active $1;
 }
 
 clear 
@@ -47,7 +48,7 @@ echo "-----------------------------------------------------------------";
 echo "---------";
 echo "--------- Checking dependencies";
 echo "--------- Please provide root password when prompted";
-sudo apt-get -qq update && sudo apt-get install -y make wget git libxml2 libxml2-dev
+sudo apt-get -qq update && sudo apt-get install -y autoconf curl git libcurl4-gnutls-dev libmcrypt libxml2 libxml2-dev make wget
 echo "---------";
 echo "--------- Creating a folder inside /tmp in order to keep your directory clean";
 if [ -d $directory  ]; then
@@ -70,7 +71,7 @@ cd $current_version
 echo "---------";
 echo "--------- Configuring PHP with default configurations, please wait";
 echo "--------- Do not type anything";
-./configure -q --with-config-file-path=/usr/local/lib/ --enable-fpm --enable-phpdbg  --enable-phpdbg-debug --with-system-ciphers --enable-bcmath --enable-dba --enable-exif --enable-mbstring --with-mysql --enable-opcache
+./configure -q --with-config-file-path=/usr/local/lib/ --enable-fpm --enable-phpdbg --enable-phpdbg-debug --with-system-ciphers --enable-bcmath --enable-dba --enable-exif --enable-mbstring --with-mysql --enable-opcache --with-curl
 echo "---------";
 echo "--------- Making PHP with make, this process could take some minutes. Please wait...";
 make -s clean
@@ -91,10 +92,16 @@ php --ini
 echo "---------";
 echo "--------- Installing common and useful extensionsi. Provide password when prompted";
 install_extension mcrypt;
-is_active mcrypt;
 echo "---------";
-install_extension gd;
-is_active gd;
+install_extension mysql;
+echo "---------";
+install_extension mysqli;
+echo "---------";
+install_extension json;
+echo "---------";
+install_extension curl;
+echo "---------";
+install_extension pdo;
 echo "-----------------------------------------------------------------";
 echo "---------                                                 -------";
 echo "---------                 Update complete                 -------";
