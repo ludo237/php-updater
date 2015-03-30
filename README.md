@@ -6,7 +6,8 @@ Current installation for PHP v5.6.7
 
 ## How it works?
 
-Just run `bash php-updater.sh` and the script will do the rest for you
+* Clone this repository
+* Run `bash php-updater.sh` and the script will do the rest for you, sometimes during the process the script will ask you for **sudo** password.
 
 ## TODOs
 
