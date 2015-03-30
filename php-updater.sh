@@ -1,4 +1,13 @@
 #!/bin/bash
+
+##############################################################
+#                                                           ##
+# Creator: Claudio Ludovico Panetta (@ludo237)              ##
+# License: MIT                                              ##
+# Official Support: https://github.com/ludo237/PHP-updater/ ##
+#                                                           ##
+##############################################################
+
 # Check if this script is forced by sudo
 if [ `id -u` -eq 0 ]; then
     echo "Please Do Not Run this script with sudo";
@@ -18,8 +27,10 @@ is_active(){
     if [ -z "$exists" ]; then
         echo "Error while installing $1, switching to the manual approach";
         echo "extension=$1.so" >> $inidir
+        is_active $1;
     else
         echo "$exists installed!!";
+        return;
     fi;
 }
 # Install a PHP extension
