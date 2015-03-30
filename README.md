@@ -12,4 +12,4 @@ Current installation for PHP v5.6.7
 ## TODOs
 
 * Select the preferred version of PHP, like 5.5 or 5.6
-* Select all the possible extension that should be installed
+* Select all the possible extensions that you might want to install
