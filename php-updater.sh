@@ -1,11 +1,11 @@
 #!/bin/bash
-
+# Check if this script is forced by sudo
 if [ `id -u` -eq 0 ]; then
     echo "Please Do Not Run this script with sudo";
     exit;
 fi;
 
-# Defininf useful variables
+# Defining useful variables
 current_version=php-5.6.7
 mout=make_output.txt
 miout=make_install_output.txt
@@ -29,6 +29,8 @@ install_extension(){
     make &> $mout
     sudo make install &> $miout
 }
+
+clear 
 
 echo "-----------------------------------------------------------------";
 echo "---------                                                 -------";
