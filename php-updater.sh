@@ -12,7 +12,12 @@ echo "--------- create an issue on the repository on Github.com -------";
 echo "---------                                                 -------";
 echo "-----------------------------------------------------------------";
 
-# Defining useful function
+# Defining useful variables
+mout=make_output.txt
+miout=make_install_output.txt
+directory=/tmp/php-updater
+
+# Check if the current extension is active
 is_active(){
   exists=`php -m | grep $1`;
   if [ -z "$exists" ]; then
@@ -22,6 +27,7 @@ is_active(){
   fi
 }
 
+# Install a PHP extension
 install_extension(){
     cd $1
     phpize > /dev/null
@@ -30,10 +36,6 @@ install_extension(){
     sudo make install &> $miout
 }
 
-# Defining useful variables
-mout=make_output.txt
-mi_aut=make_install_output.txt
-directory=/tmp/php-updater
 echo "---------";
 echo "--------- Checking dependencies";
 echo "--------- Please provide root password when prompted";
