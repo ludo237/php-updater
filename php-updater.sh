@@ -29,7 +29,7 @@ is_active(){
 
 # Install a PHP extension
 install_extension(){
-    cd $1
+    cd ext/$1
     phpize > /dev/null
     ./configure -q > /dev/null
     make &> $mout
