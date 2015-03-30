@@ -36,7 +36,7 @@ mi_aut=make_install_output.txt
 directory=/tmp/php-updater
 echo "---------";
 echo "--------- Checking dependencies";
-echo "--------- Please provide root password when prompeted";
+echo "--------- Please provide root password when prompted";
 sudo apt-get -qq update && sudo apt-get install -y make wget git libxml2 libxml2-dev
 echo "---------";
 echo "--------- Creating a folder inside /tmp in order to keep your directory clean";
