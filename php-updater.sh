@@ -10,12 +10,14 @@ current_version=php-5.6.7
 mout=make_output.txt
 miout=make_install_output.txt
 directory=/tmp/php-updater
+inidir=/usr/local/lib/php.ini
 
 # Check if the current extension is active
 is_active(){
     exists=`php -m | grep $1`;
     if [ -z "$exists" ]; then
-        echo "Error while installing $exists, try the manual approach instead";
+        echo "Error while installing $1, switching to the manual approach";
+        echo "extension=$1.so" >> $inidir
     else
         echo "$exists installed!!";
     fi;
@@ -48,7 +50,7 @@ echo "-----------------------------------------------------------------";
 echo "---------";
 echo "--------- Checking dependencies";
 echo "--------- Please provide root password when prompted";
-sudo apt-get -qq update && sudo apt-get install -y autoconf curl git libcurl4-gnutls-dev libmcrypt-dev libxml2 libxml2-dev make mcrypt wget
+sudo apt-get -qq update && sudo apt-get install -y autoconf curl git libcurl4-gnutls-dev libmcrypt-dev libxml2 libxml2-dev make mcrypt re2c wget
 echo "---------";
 echo "--------- Creating a folder inside /tmp in order to keep your directory clean";
 if [ -d $directory  ]; then
@@ -84,7 +86,8 @@ echo "--------- Checking your PHP version";
 php -v
 echo "---------";
 echo "--------- Generating PHP.ini default file in /usr/local/lib called php.ini";
-sudo cp php.ini-production /usr/local/lib/php.ini
+sudo cp php.ini-production $inidir
+sudo chown `whoami`:`whoami` $inidir
 echo "---------";
 echo "--------- php.ini is in Production mode";
 echo "--------- Current php ini configurations";
