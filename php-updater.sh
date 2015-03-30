@@ -39,17 +39,14 @@ cd php-5.6.7
 echo "---------";
 echo "--------- Configuring PHP with default configurations, please wait";
 echo "--------- Do not type anything";
-./configure -q --with-config-file-path=/usr/local/lib/ --enable-fpm --enable-phpdbg  --enable-phpdbg-debug --enable-debug --with-system-ciphers --enable-bcmath --enable-dba --enable-exif --enable-mbstring --with-mysql --enable-opcache
+./configure -q --with-config-file-path=/usr/local/lib/ --enable-fpm --enable-phpdbg  --enable-phpdbg-debug --with-system-ciphers --enable-bcmath --enable-dba --enable-exif --enable-mbstring --with-mysql --enable-opcache
 echo "---------";
-echo "--------- Making PHP with make";
+echo "--------- Making PHP with make, this process could take some minutes. Please wait...";
 make -s clean
-make -s 
-echo "---------";
-echo "--------- Testing with make test";
-make -s test
+make &> make_output.txt
 echo "---------";
 echo "--------- Installing PHP v5.6.7, it will require super user password. Pleae provide it when prompted";
-sudo make -s install
+sudo make install &> make_install_output.txt
 echo "---------";
 echo "--------- Checking your PHP version";
 php -v
