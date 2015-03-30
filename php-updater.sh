@@ -12,12 +12,11 @@ echo "--------- create an issue on the repository on Github.com -------";
 echo "---------                                                 -------";
 echo "-----------------------------------------------------------------";
 
-echo "--------- This script require Super User permissions, please provide sudo password";
 directory=/tmp/php-updater
 echo "---------";
 echo "--------- Checking dependencies";
 echo "--------- Please provide root password when prompeted";
-sudo apt-get -qq update && sudo apt-get install -y make wget git
+sudo apt-get -qq update && sudo apt-get install -y make wget git libxml2
 echo "---------";
 echo "--------- Creating a folder inside /tmp in order to keep your directory clean";
 if [ -d $directory  ]; then
