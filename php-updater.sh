@@ -38,7 +38,7 @@ echo "---------           Welcome to PHP Updater v0.0.1         -------";
 echo "---------                                                 -------";
 echo "--------- Interactive script to update PHP                -------";
 echo "--------- please note, this update will install           -------";
-echo "--------- PHP v5.6.7 with default configurations          -------";
+echo "--------- $current_Version with default configurations    -------";
 echo "--------- If you need something more specific please      -------";
 echo "--------- create an issue on the repository on Github.com -------";
 echo "---------                                                 -------";
@@ -56,16 +56,16 @@ fi;
 
 mkdir -p $directory
 echo "---------";
-echo "--------- Current Directory changed to /tmp/php-updater";
+echo "--------- Current Directory changed to $directory";
 cd $directory
 echo "---------";
-echo "--------- Fetching PHP v5.6.7 from a mirror, please wait...";
+echo "--------- Fetching $current_version from a mirror, please wait...";
 wget -q http://it1.php.net/get/php-5.6.7.tar.gz/from/this/mirror
 echo "---------"; 
 echo "--------- Extracting PHP Source code";
 tar zxf mirror && rm mirror
 echo "---------";
-echo "--------- Current Directory changed to /tmp/php-updater/php-5.6.7";
+echo "--------- Current Directory changed to $directory/$current_version";
 cd $current_version
 echo "---------";
 echo "--------- Configuring PHP with default configurations, please wait";
@@ -76,7 +76,7 @@ echo "--------- Making PHP with make, this process could take some minutes. Plea
 make -s clean
 make &> $mout
 echo "---------";
-echo "--------- Installing PHP v5.6.7, it will require super user password. Pleae provide it when prompted";
+echo "--------- Installing $current_version, it will require super user password. Pleae provide it when prompted";
 sudo make install &> $miout
 echo "---------";
 echo "--------- Checking your PHP version";
@@ -98,6 +98,6 @@ is_active gd;
 echo "-----------------------------------------------------------------";
 echo "---------                                                 -------";
 echo "---------                 Update complete                 -------";
-echo "---------              Have fun with PHP v5.6.7           -------";
+echo "---------              Have fun with $current_version     -------";
 echo "---------                                                 -------";
 echo "-----------------------------------------------------------------";
