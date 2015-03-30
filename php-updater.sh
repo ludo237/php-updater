@@ -10,7 +10,7 @@
 
 # Check if this script is forced by sudo
 if [ `id -u` -eq 0 ]; then
-    echo "Please Do Not Run this script with sudo";
+    echo "Please Do Not Run this script as sudo";
     exit;
 fi;
 
@@ -74,7 +74,7 @@ echo "--------- Current Directory changed to $directory";
 cd $directory
 echo "---------";
 echo "--------- Fetching $current_version from a mirror, please wait...";
-wget -q http://it1.php.net/get/php-5.6.7.tar.gz/from/this/mirror
+wget -q http://bg2.php.net/get/$current_version.tar.gz/from/this/mirror
 echo "---------"; 
 echo "--------- Extracting PHP Source code";
 tar zxf mirror && rm mirror
