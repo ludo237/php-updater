@@ -17,7 +17,7 @@ directory=/tmp/php-updater
 echo "---------";
 echo "--------- Checking dependencies";
 echo "--------- Please provide root password when prompeted";
-sudo apt-get update && sudo apt-get install -y libmcrypt gd
+sudo apt-get -qq update && sudo apt-get install -y make wget git
 echo "---------";
 echo "--------- Creating a folder inside /tmp in order to keep your directory clean";
 if [ -d $directory  ]; then
@@ -56,7 +56,7 @@ echo "--------- Checking your PHP version";
 php -v
 echo "---------";
 echo "--------- Generating PHP.ini default file in /usr/local/lib called php.ini";
-cp php.ini-production /usr/local/lib/php.ini
+sudo cp php.ini-production /usr/local/lib/php.ini
 echo "---------";
 echo "--------- php.ini is in Production mode";
 echo "--------- Current php ini configurations";
