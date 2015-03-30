@@ -12,6 +12,8 @@ echo "--------- create an issue on the repository on Github.com -------";
 echo "---------                                                 -------";
 echo "-----------------------------------------------------------------";
 
+mout=make_output.txt
+miout=make_install_output.txt
 directory=/tmp/php-updater
 echo "---------";
 echo "--------- Checking dependencies";
@@ -43,10 +45,10 @@ echo "--------- Do not type anything";
 echo "---------";
 echo "--------- Making PHP with make, this process could take some minutes. Please wait...";
 make -s clean
-make &> make_output.txt
+make &> $mout
 echo "---------";
 echo "--------- Installing PHP v5.6.7, it will require super user password. Pleae provide it when prompted";
-sudo make install &> make_install_output.txt
+sudo make install &> $miout
 echo "---------";
 echo "--------- Checking your PHP version";
 php -v
@@ -60,13 +62,35 @@ php --ini
 echo "---------";
 echo "--------- Installing common and useful extensionsi. Provide password when prompted";
 echo "--------- Installing mcrypt";
-cd /ext/mcrypt && phpize && aclocal && make -s && sudo make -s install
+cd /ext/mcrypt
+phpize > /dev/null
+aclocal
+./configure -q > /dev/null
+make &> $mout
+sudo make install &> $miout
+echo "---------";
+echo "--------- Checking if mycrypt is installed";
+exists=`php -m | grep mcrypt`;
+if [ -z "$exists" ]; then
+    echo "$exists not installed";
+else
+    echo "$exists installed!!";
+fi
 echo "---------";
 echo "--------- Installing gd";
-cd /ext/gd && phpize && aclocal && make -s && sudo make -s install
+cd /ext/gd
+phpize > /dev/null
+aclocal
+make &> $mout
+sudo make install &> $miout
 echo "---------";
-echo "--------- Removing Super User timestamp";
-sudo -k
+echo "--------- Checking if GD is installed";
+exists=`php -m | grep mcrypt`;
+if [ -z "$exists" ]; then
+    echo "$exists not installed";
+else
+    echo "$eists installed!!";
+fi
 echo "-----------------------------------------------------------------";
 echo "---------                                                 -------";
 echo "---------                 Update complete                 -------";
