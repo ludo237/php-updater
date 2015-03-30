@@ -1,5 +1,34 @@
 #!/bin/bash
 
+if [ `id -u` -eq 0 ]; then
+    echo "Please Do Not Run this script with sudo";
+    exit;
+fi;
+
+# Defininf useful variables
+current_version=php-5.6.7
+mout=make_output.txt
+miout=make_install_output.txt
+directory=/tmp/php-updater
+
+# Check if the current extension is active
+is_active(){
+    exists=`php -m | grep $1`;
+    if [ -z "$exists" ]; then
+        echo "$exists not installed";
+    else
+        echo "$exists installed!!";
+    fi;
+}
+# Install a PHP extension
+install_extension(){
+    cd ext/$1
+    phpize > /dev/null
+    ./configure -q > /dev/null
+    make &> $mout
+    sudo make install &> $miout
+}
+
 echo "-----------------------------------------------------------------";
 echo "---------                                                 -------";
 echo "---------           Welcome to PHP Updater v0.0.1         -------";
@@ -11,30 +40,6 @@ echo "--------- If you need something more specific please      -------";
 echo "--------- create an issue on the repository on Github.com -------";
 echo "---------                                                 -------";
 echo "-----------------------------------------------------------------";
-
-# Defining useful variables
-mout=make_output.txt
-miout=make_install_output.txt
-directory=/tmp/php-updater
-
-# Check if the current extension is active
-is_active(){
-  exists=`php -m | grep $1`;
-  if [ -z "$exists" ]; then
-      echo "$exists not installed";
-  else
-      echo "$exists installed!!";
-  fi
-}
-
-# Install a PHP extension
-install_extension(){
-    cd ext/$1
-    phpize > /dev/null
-    ./configure -q > /dev/null
-    make &> $mout
-    sudo make install &> $miout
-}
 
 echo "---------";
 echo "--------- Checking dependencies";
@@ -58,7 +63,7 @@ echo "--------- Extracting PHP Source code";
 tar zxf mirror && rm mirror
 echo "---------";
 echo "--------- Current Directory changed to /tmp/php-updater/php-5.6.7";
-cd php-5.6.7
+cd $current_version
 echo "---------";
 echo "--------- Configuring PHP with default configurations, please wait";
 echo "--------- Do not type anything";
