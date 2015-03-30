@@ -13,18 +13,22 @@ echo "---------                                                 -------";
 echo "-----------------------------------------------------------------";
 
 echo "--------- This script require Super User permissions, please provide sudo password";
-sudo -v
+sudo su
+directory=/tmp/php-updater
 echo "---------";
 echo "--------- Checking dependencies";
 echo "--------- Please provide root password when prompeted";
 apt-get update && sudo apt-get install -y libmcrypt gd
 echo "---------";
 echo "--------- Creating a folder inside /tmp in order to keep your directory clean";
-rm -r /tmp/php-updater
-mkdir -p /tmp/php-updater
+if [ -d $directory  ]; then
+    rm -r $directory
+fi;
+
+mkdir -p $directory
 echo "---------";
 echo "--------- Current Directory changed to /tmp/php-updater";
-cd /tmp/php-updater
+cd $directory
 echo "---------";
 echo "--------- Fetching PHP v5.6.7 from a mirror, please wait...";
 wget -q http://it1.php.net/get/php-5.6.7.tar.gz/from/this/mirror
