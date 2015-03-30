@@ -13,12 +13,11 @@ echo "---------                                                 -------";
 echo "-----------------------------------------------------------------";
 
 echo "--------- This script require Super User permissions, please provide sudo password";
-sudo su
 directory=/tmp/php-updater
 echo "---------";
 echo "--------- Checking dependencies";
 echo "--------- Please provide root password when prompeted";
-apt-get update && sudo apt-get install -y libmcrypt gd
+sudo apt-get update && sudo apt-get install -y libmcrypt gd
 echo "---------";
 echo "--------- Creating a folder inside /tmp in order to keep your directory clean";
 if [ -d $directory  ]; then
@@ -51,7 +50,7 @@ echo "--------- Testing with make test";
 make -s test
 echo "---------";
 echo "--------- Installing PHP v5.6.7, it will require super user password. Pleae provide it when prompted";
-make -s install
+sudo make -s install
 echo "---------";
 echo "--------- Checking your PHP version";
 php -v
@@ -63,12 +62,12 @@ echo "--------- php.ini is in Production mode";
 echo "--------- Current php ini configurations";
 php --ini
 echo "---------";
-echo "--------- Installing common and useful extensions";
+echo "--------- Installing common and useful extensionsi. Provide password when prompted";
 echo "--------- Installing mcrypt";
-cd /ext/mcrypt && phpize && aclocal && make -s && make -s install
+cd /ext/mcrypt && phpize && aclocal && make -s && sudo make -s install
 echo "---------";
 echo "--------- Installing gd";
-cd /ext/gd && phpize && aclocal && make -s && make -s install
+cd /ext/gd && phpize && aclocal && make -s && sudo make -s install
 echo "---------";
 echo "--------- Removing Super User timestamp";
 sudo -k
