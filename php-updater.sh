@@ -27,7 +27,6 @@ is_active(){
     if [ -z "$exists" ]; then
         echo "Error while installing $1, switching to the manual approach";
         echo "extension=$1.so" >> $inidir
-        is_active $1;
     else
         echo "$exists installed!!";
         return;
