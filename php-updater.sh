@@ -104,7 +104,7 @@ echo "--------- php.ini is in Production mode";
 echo "--------- Current php ini configurations";
 php --ini
 echo "---------";
-echo "--------- Installing common and useful extensionsi. Provide password when prompted";
+echo "--------- Installing common and useful extensions. Provide password when prompted";
 install_extension mcrypt;
 echo "---------";
 install_extension mysql;
