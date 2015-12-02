@@ -2,7 +2,7 @@
     
     Simple bash script to fetch and compile PHP Latest with standard configuration
     
-Current installation for PHP v5.6.7
+Current installation for `PHP v7.0.0`
 
 ## How it works?
 
@@ -11,5 +11,5 @@ Current installation for PHP v5.6.7
 
 ## TODOs
 
-* Select the preferred version of PHP, like 5.5 or 5.6
+* Select the preferred version of PHP
 * Select all the possible extensions that you might want to install
