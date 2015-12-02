@@ -15,7 +15,7 @@ if [ `id -u` -eq 0 ]; then
 fi;
 
 # Defining useful variables
-current_version=php-5.6.7
+current_version=php-7.0.0
 mout=make_output.txt
 miout=make_install_output.txt
 directory=/tmp/php-updater
@@ -47,7 +47,7 @@ clear
 
 echo "-----------------------------------------------------------------";
 echo "---------                                                 -------";
-echo "---------           Welcome to PHP Updater v0.0.1         -------";
+echo "--------- Welcome to PHP Updater v0.0.1                   -------";
 echo "---------                                                 -------";
 echo "--------- Interactive script to update PHP                -------";
 echo "--------- please note, this update will install           -------";
@@ -117,7 +117,7 @@ echo "---------";
 install_extension pdo;
 echo "-----------------------------------------------------------------";
 echo "---------                                                 -------";
-echo "---------                 Update complete                 -------";
-echo "---------              Have fun with $current_version     -------";
+echo "--------- Update complete                                 -------";
+echo "--------- Have fun with $current_version                  -------";
 echo "---------                                                 -------";
 echo "-----------------------------------------------------------------";
